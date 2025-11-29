@@ -8,7 +8,7 @@ recipient_address = Address("603000", "Нижний Новгород", "Боль
 # Экземпляр
 mailing = Mailing(
     to_address=recipient_address,
-    from_sddress=sender_address,
+    from_address=sender_address,
     cost=400.00,
     track="RU123456789RU"
 )

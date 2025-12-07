@@ -9,7 +9,6 @@ from selenium.webdriver.common.keys import Keys
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 driver.maximize_window()
 
-#открыть сайт лабиринта
 driver.get("http://uitestingplayground.com/classattr")
 
 blue_button = driver.find_element(By.CSS_SELECTOR, "button.btn-primary")

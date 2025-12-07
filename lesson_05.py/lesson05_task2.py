@@ -9,4 +9,10 @@ from selenium.webdriver.common.keys import Keys
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 driver.maximize_window()
 
-driver.get("http://uitestingplayground.com/classattr")
+driver.get("http://uitestingplayground.com/dynamicid")
+
+blue_button = driver.find_element(By.CSS_SELECTOR, "button.btn.btn-primary")
+blue_button.send_keys(Keys.ENTER)
+
+
+sleep(5)

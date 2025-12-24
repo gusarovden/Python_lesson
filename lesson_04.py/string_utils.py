@@ -9,7 +9,10 @@ class StringUtils:
         и возвращает этот же текст
         Пример: `capitilize("skypro") -> "Skypro"`
         """
-        return string.capitalize()
+        if not string:  
+            return string
+        
+        return string[0].upper() + string[1:]
 
     def trim(self, string: str) -> str:
         """

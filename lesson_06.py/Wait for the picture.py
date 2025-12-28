@@ -7,7 +7,7 @@ driver = webdriver.Chrome()
 
 driver.get("https://bonigarcia.dev/selenium-webdriver-java/loading-images.html")
 
-wait = WebDriverWait(driver, 30)
+wait = WebDriverWait(driver, 15)
 wait.until(
     EC.presence_of_element_located((By.XPATH, "(//img)[5]"))
 )

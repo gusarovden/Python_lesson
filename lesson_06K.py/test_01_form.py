@@ -1,6 +1,8 @@
 import unittest
+import pytest
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service
+from selenium.webdriver.edge.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -10,14 +12,24 @@ from form_page import FormPage
 class TestForm(unittest.TestCase):
 
     def setUp(self):
-        self.service = Service()
-        self.driver = webdriver.Edge(service=self.service)
+         # Настройки Edge для минимизации логов
+        options = Options()
+        options.add_argument("--disable-logging")
+        options.add_argument("--silent")
+        options.add_argument("--log-level=3")
+        options.add_experimental_option("excludeSwitches", ["enable-logging"])
+        
+        # Сервис с логированием в файл 
+        self.service = Service(log_path="edge_service.log")
+
+        self.driver = webdriver.Edge(service=self.service, options=options)
         self.form_page = FormPage(self.driver)        # Создаём экземпляр страницы
         self.wait = WebDriverWait(self.driver, 10)  
 
     def tearDown(self):
         self.driver.quit()
 
+    @pytest.mark.form_test    
     def test_form_validation(self):
         # Данные для заполнения
         form_data = {
@@ -71,12 +83,12 @@ class TestForm(unittest.TestCase):
                 "alert-success", success_class,
                 f"Поле {field_id} не отмечено как успешное (класс: '{success_class}')"
             )
-        # Проверить, что zip-code отмечен как ошибка (красный)
-        zip_error_element = self.form_page.get_zip_code_error_element()
-        self.assertIn(
+            # Проверить, что zip-code отмечен как ошибка (красный)
+            zip_error_element = self.form_page.get_zip_code_error_element()
+            self.assertIn(
             "alert-danger", zip_error_element.get_attribute("class"),
             "Zip code не отмечен как ошибочный"
         )
-
-if __name__ == "__main__":
-    unittest.main()
+# Запуск теста только при прямом запуске файла. 
+# if __name__ == "__main__":
+#     unittest.main()

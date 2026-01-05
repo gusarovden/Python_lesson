@@ -19,7 +19,7 @@ class TestCalculator(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    @pytest.mark.calc_test
+    @pytest.mark.calculator_test
     def test_calculator_with_delay(self):
         
         self.driver.get("https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")

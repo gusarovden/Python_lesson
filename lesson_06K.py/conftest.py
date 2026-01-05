@@ -1,5 +1,3 @@
-import pytest
-
 def pytest_configure(config):
     config.addinivalue_line(
         "markers",
@@ -7,6 +5,6 @@ def pytest_configure(config):
     )
     config.addinivalue_line(
         "markers",
-        "сalc_test: Тест проверки заполнения поля с выдержкой времени"
+        "calculator_test: Тест проверки заполнения поля с выдержкой времени"
     )
   

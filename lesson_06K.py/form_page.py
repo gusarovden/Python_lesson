@@ -7,7 +7,7 @@ class FormPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
 
-     # Локаторы для ПОЛЕЙ ВВОДА (используются в fill_form)
+     # Локаторы для ПОЛЕЙ ВВОДА (используются в fill_form).
     FIRST_NAME_INPUT = (By.NAME, "first-name")
     LAST_NAME_INPUT = (By.NAME, "last-name")
     ADDRESS_INPUT = (By.NAME, "address")
@@ -20,7 +20,7 @@ class FormPage:
     COMPANY_INPUT = (By.NAME, "company")
     SUBMIT_BUTTON = (By.XPATH, "//button[@type='submit']")
 
-    # Локаторы для ЭЛЕМЕНТОВ УСПЕХА (используются после submit)
+    # Локаторы для ЭЛЕМЕНТОВ УСПЕХА (используются после submit).
     FIRST_NAME_SUCCESS = (By.ID, "first-name")
     LAST_NAME_SUCCESS = (By.ID, "last-name")
     ADDRESS_SUCCESS = (By.ID, "address")
@@ -31,15 +31,15 @@ class FormPage:
     JOB_POSITION_SUCCESS = (By.ID, "job-position")
     COMPANY_SUCCESS = (By.ID, "company")
 
-    # Локатор для ОШИБКИ zip-code
+    # Локатор для ОШИБКИ zip-code.
     ZIP_CODE_ERROR = (By.ID, "zip-code")
 
     def open(self, url):
-        """Открыть страницу формы"""
+
         self.driver.get(url)
 
     def fill_form(self, data):
-        """Заполнить форму переданными данными"""
+        
         self.wait.until(EC.presence_of_element_located(self.FIRST_NAME_INPUT)).send_keys(data["first-name"])
         self.wait.until(EC.presence_of_element_located(self.LAST_NAME_INPUT)).send_keys(data["last-name"])
         self.wait.until(EC.presence_of_element_located(self.ADDRESS_INPUT)).send_keys(data["address"])
@@ -52,25 +52,25 @@ class FormPage:
         self.wait.until(EC.presence_of_element_located(self.COMPANY_INPUT)).send_keys(data["company"])
 
     def submit(self):
-        """Нажать кнопку Submit"""
+        # Кнопка Submit.
         submit_btn = self.wait.until(EC.element_to_be_clickable(self.SUBMIT_BUTTON))
         submit_btn.click()
 
     def get_success_element_by_id(self, field_id):
-        """Найти элемент успеха по id"""
+        # Найти элемент успеха по id.
         locator = (By.ID, field_id)
         return self.wait.until(EC.presence_of_element_located(locator))
 
     def get_success_text(self, field_id):
-        """Получить текст элемента успеха"""
+        # Получить текст элемента успеха.
         element = self.get_success_element_by_id(field_id)
         return element.text
 
     def get_success_class(self, field_id):
-        """Получить класс элемента успеха"""
+        # Получить класс элемента успеха.
         element = self.get_success_element_by_id(field_id)
         return element.get_attribute("class")
 
     def get_zip_code_error_element(self):
-        """Получить элемент ошибки для zip-code"""
+        # Получить элемент ошибки для zip-code.
         return self.wait.until(EC.presence_of_element_located(self.ZIP_CODE_ERROR))

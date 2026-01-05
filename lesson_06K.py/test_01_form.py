@@ -89,6 +89,3 @@ class TestForm(unittest.TestCase):
             "alert-danger", zip_error_element.get_attribute("class"),
             "Zip code не отмечен как ошибочный"
         )
-# Запуск теста только при прямом запуске файла. 
-# if __name__ == "__main__":
-#     unittest.main()

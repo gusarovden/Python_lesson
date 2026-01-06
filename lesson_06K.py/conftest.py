@@ -7,4 +7,8 @@ def pytest_configure(config):
         "markers",
         "calculator_test: Тест проверки заполнения поля с выдержкой времени"
     )
+    config.addinivalue_line(
+        "markers",
+        "shop_test: Тест проверки итоговой суммы"
+    )
   

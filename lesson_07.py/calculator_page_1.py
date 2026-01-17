@@ -41,5 +41,5 @@ class CalculatorPage:
 
     def get_result(self):        
         result_elem = self.wait.until(EC.presence_of_element_located(self.result_display))  # Получить текст из поля результата.        
-        self.wait.until(lambda driver: result_elem.text != '7+8') #  Ждём, пока появится результат.
+        self.wait.until(lambda driver: result_elem.text == '15') #  Ждём, пока появится результат.
         return result_elem.text

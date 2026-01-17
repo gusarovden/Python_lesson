@@ -13,22 +13,22 @@ class LoginPage:
         self.login_button = (By.ID, "login-button")
 
     def open(self, url):
-        """Открыть страницу авторизации."""
+        # Открыть страницу авторизации.
         self.driver.get(url)
 
     def enter_username(self, username):
-        """Ввести логин."""
+        # Ввести логин.
         username_field = self.wait.until(EC.element_to_be_clickable(self.username_input))
         username_field.clear()
         username_field.send_keys(username)
 
     def enter_password(self, password):
-        """Ввести пароль."""
+        # Ввести пароль.
         password_field = self.wait.until(EC.element_to_be_clickable(self.password_input))
         password_field.clear()
         password_field.send_keys(password)
 
     def click_login(self):
-        """Нажать кнопку входа."""
+        # Нажать кнопку входа.
         login_btn = self.wait.until(EC.element_to_be_clickable(self.login_button))
         login_btn.click()

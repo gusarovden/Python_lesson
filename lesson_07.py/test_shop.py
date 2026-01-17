@@ -14,30 +14,39 @@ def driver():
 
 @pytest.mark.test_shop
 def test_shop_flow(driver):
-    # 1. Открыть сайт
+    # Открыть сайт
     login_page = LoginPage(driver)
     login_page.open("https://www.saucedemo.com/")
 
-    # 2. Авторизоваться как standard_user
+    # Авторизоваться как standard_user
     login_page.enter_username("standard_user")
     login_page.enter_password("secret_sauce")
     login_page.click_login()
 
-    # 3. Добавить товары в корзину
+    # Добавить товары в корзину
     main_page = MainShopPage(driver)
     main_page.add_backpack_to_cart()
     main_page.add_bolt_tshirt_to_cart()
     main_page.add_onesie_to_cart()
 
-    # 4. Перейти в корзину
+    # Перейти в корзину
     main_page.go_to_cart()
 
-    # 5. Нажать Checkout
+    # Нажать Checkout
     cart_page = CartPage(driver)
     cart_page.click_checkout()
 
-    # 6. Заполнить форму
+    # Заполнить форму
     checkout_page = CheckoutPage(driver)
     checkout_page.fill_first_name("Иван")
     checkout_page.fill_last_name("Иванов")
     checkout_page.fill_postal_code("12345")
+    checkout_page.click_continue()
+
+    # Получить итоговую сумму
+    total_price_text = checkout_page.get_total_price()
+
+    # Проверить, что итоговая сумма равна $58.29
+    expected_total = "$58.29"
+    total_price_clean = total_price_text.replace("Total: ", "")
+    assert total_price_clean == expected_total, f"Ожидалась сумма {expected_total}, но получено {total_price_text}"

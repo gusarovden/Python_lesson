@@ -14,21 +14,21 @@ class MainShopPage:
         self.cart_link = (By.CLASS_NAME, "shopping_cart_link")
 
     def add_backpack_to_cart(self):
-        """Добавить рюкзак в корзину."""
+        # Добавить рюкзак в корзину.
         btn = self.wait.until(EC.element_to_be_clickable(self.backpack_add_button))
         btn.click()
 
     def add_bolt_tshirt_to_cart(self):
-        """Добавить футболку в корзину."""
+        # Добавить футболку в корзину.
         btn = self.wait.until(EC.element_to_be_clickable(self.bolt_tshirt_add_button))
         btn.click()
 
     def add_onesie_to_cart(self):
-        """Добавить комбинезон в корзину."""
+        # Добавить комбинезон в корзину.
         btn = self.wait.until(EC.element_to_be_clickable(self.onesie_add_button))
         btn.click()
 
     def go_to_cart(self):
-        """Перейти в корзину."""
+        # Перейти в корзину.
         cart_link = self.wait.until(EC.element_to_be_clickable(self.cart_link))
         cart_link.click()

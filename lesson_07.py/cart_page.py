@@ -11,6 +11,6 @@ class CartPage:
         self.checkout_button = (By.ID, "checkout")
 
     def click_checkout(self):
-        """Нажать кнопку Checkout."""
+        # Нажать кнопку Checkout.
         checkout_btn = self.wait.until(EC.element_to_be_clickable(self.checkout_button))
         checkout_btn.click()

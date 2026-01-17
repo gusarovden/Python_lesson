@@ -15,29 +15,29 @@ class CheckoutPage:
         self.total_price = (By.CLASS_NAME, "summary_total_label")
 
     def fill_first_name(self, name):
-        """Заполнить имя."""
+        # Заполнить имя.
         field = self.wait.until(EC.element_to_be_clickable(self.first_name_input))
         field.clear()
         field.send_keys(name)
 
     def fill_last_name(self, last_name):
-        """Заполнить фамилию."""
+        # Заполнить фамилию.
         field = self.wait.until(EC.element_to_be_clickable(self.last_name_input))
         field.clear()
         field.send_keys(last_name)
 
     def fill_postal_code(self, code):
-        """Заполнить почтовый индекс."""
+        # Заполнить почтовый индекс.
         field = self.wait.until(EC.element_to_be_clickable(self.postal_code_input))
         field.clear()
         field.send_keys(code)
 
     def click_continue(self):
-        """Нажать Continue."""
+        # Нажать Continue.
         continue_btn = self.wait.until(EC.element_to_be_clickable(self.continue_button))
         continue_btn.click()
 
     def get_total_price(self):
-        """Получить итоговую стоимость."""
+        # Получить итоговую стоимость.
         total_elem = self.wait.until(EC.presence_of_element_located(self.total_price))
         return total_elem.text

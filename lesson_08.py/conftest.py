@@ -44,7 +44,7 @@ def temp_project(projects_client):
 
     yield project_id
 
-    # Очистка через мягкое удаление
+    # Очистка 
     print(f"[FIXTURE] Пытаюсь пометить проект {project_id} как удалённый")
     try:
         delete_response = projects_client.delete_project(project_id)

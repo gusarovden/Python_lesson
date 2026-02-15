@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String, create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 Base = declarative_base()
 
@@ -12,20 +11,14 @@ class Student(Base):
     email = Column(String(100), unique=True, nullable=False)
 
     def get_test_engine():
-        # Создаёт тестовый движок БД
+        """Создаёт тестовый движок БД (SQLite)."""
         return create_engine('sqlite:///test_students.db', echo=False)
 
     def create_tables(engine):
-        # Создаёт таблицы в БД.
+        """Создаёт таблицы в БД."""
         Base.metadata.create_all(engine)
 
     def get_session(engine):
-        # Возвращает сессию для работы с БД.
+        """Возвращает сессию для работы с БД."""
         Session = sessionmaker(bind=engine)
         return Session()
-    
-    def pytest_configure(config):
-        config.addinivalue_line(
-        "markers",
-        "students: Тест базы данных "
-    )

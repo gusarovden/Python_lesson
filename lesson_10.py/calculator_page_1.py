@@ -10,7 +10,7 @@ class CalculatorPage:
     Предоставляет методы для управления элементами калькулятора и получения результатов.
     """
 
-    def __init__(self, driver) -> None:
+    def __init__(self, driver):
         """
         Инициализация страницы калькулятора.
 
@@ -18,7 +18,7 @@ class CalculatorPage:
             driver: экземпляр WebDriver для управления браузером
         """
         self.driver = driver
-        self.wait = WebDriverWait(driver, 60)  # Увеличен таймаут для ожидания результата
+        self.wait = WebDriverWait(driver, 15)  # Увеличен таймаут для ожидания результата
 
         # Локаторы
         self.delay_input: Tuple[By, str] = (By.ID, "delay")
@@ -76,5 +76,6 @@ class CalculatorPage:
             str: текст из поля результата
         """
         result_elem = self.wait.until(EC.presence_of_element_located(self.result_display))
-        self.wait.until(lambda driver: result_elem.text == '15')  # Ждём, пока появится результат
+        # Ждём, пока результат станет числовым
+        self.wait.until(lambda driver: result_elem.text.isdigit())
         return result_elem.text

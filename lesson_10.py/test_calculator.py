@@ -36,8 +36,8 @@ class TestCalculator:
         with allure.step("Открытие страницы калькулятора"):
             self.calculator.open("https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
 
-        with allure.step("Установка задержки 1 секунда"):
-            self.calculator.set_delay(1)
+        with allure.step("Установка задержки 1 секунда в калбкуляторе"):
+            self.calculator.set_delay(1) # Это настройка калькулятора, а не пауза теста
 
         with allure.step("Нажатие кнопки '7'"):
             self.calculator.click_button_7()
@@ -51,9 +51,7 @@ class TestCalculator:
         with allure.step("Нажатие кнопки '='"):
             self.calculator.click_button_equals()
 
-        @allure.step("Проверка результата сложения")
-        def check_result():
+        with allure.step("Ожидание и проверка результата сложения"):
             result = self.calculator.get_result()
             assert result == "15", f"Ожидалось 15, но получено {result}"
-        
-        check_result()
+            

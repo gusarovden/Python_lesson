@@ -29,13 +29,6 @@ class TestCalculator:
         yield
         self.driver.quit()
     
-    # @pytest.fixture(autouse=True)
-    # def setup(self):
-    #     self.driver = webdriver.Chrome()
-    #     self.calculator = CalculatorPage(self.driver)
-    #     yield
-    #     self.driver.quit()
-
     @allure.title("Тест сложения 7 + 8 с задержкой 1 секунда")
     @allure.description("Проверяем, что калькулятор правильно складывает числа с задержкой")
     @allure.severity(allure.severity_level.CRITICAL)
